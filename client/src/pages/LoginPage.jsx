@@ -29,19 +29,31 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left — image panel */}
-      <div className="hidden lg:block lg:w-[50%] relative">
-        <img
-          src="/images/login-hero.png"
-          alt="Office interior"
-          className="absolute inset-0 w-full h-full object-cover"
+      {/* Left — abstract panel */}
+      <div className="hidden lg:flex lg:w-[50%] relative flex-col justify-end"
+        style={{
+          background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 40%, #252525 100%)',
+        }}
+      >
+        {/* Geometric pattern */}
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '48px 48px',
+          }}
         />
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute bottom-0 left-0 right-0 p-10">
+        {/* Subtle gradient orb */}
+        <div className="absolute top-1/4 left-1/3 w-[400px] h-[400px] rounded-full opacity-[0.06]"
+          style={{ background: 'radial-gradient(circle, #ffffff 0%, transparent 70%)' }}
+        />
+        <div className="relative p-10">
           <p className="text-white/90 text-[13px] font-semibold tracking-wide uppercase mb-1">
             Clockwork ATS
           </p>
-          <p className="text-white/60 text-[13px] leading-relaxed max-w-md">
+          <p className="text-white/40 text-[13px] leading-relaxed max-w-sm">
             Applicant tracking and recruitment pipeline management for staffing agencies.
           </p>
         </div>

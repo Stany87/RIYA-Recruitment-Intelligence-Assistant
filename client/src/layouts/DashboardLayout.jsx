@@ -87,8 +87,7 @@ export default function DashboardLayout() {
           </button>
         </div>
 
-        {/* Nav */}
-        <nav className={`flex-1 py-2 space-y-px overflow-y-auto ${collapsed ? 'px-1.5' : 'px-2'}`}>
+        <nav className={`flex-1 py-2 space-y-px overflow-y-auto ${collapsed ? 'px-1.5' : 'px-1'}`}>
           {navItems.map(({ to, label, icon: Icon }) => (
             <NavLink
               key={to}
@@ -96,12 +95,12 @@ export default function DashboardLayout() {
               onClick={() => setSidebarOpen(false)}
               title={collapsed ? label : undefined}
               className={({ isActive }) =>
-                `flex items-center gap-2 rounded text-[13px] transition-colors duration-75 ${
-                  collapsed ? 'justify-center p-2' : 'px-2.5 py-[6px]'
+                `flex items-center gap-2 rounded-r text-[13px] transition-colors duration-75 ${
+                  collapsed ? 'justify-center p-2 rounded' : 'px-2.5 py-[6px]'
                 } ${
                   isActive
-                    ? 'bg-sidebar-active text-sidebar-text-active'
-                    : 'text-sidebar-text hover:text-sidebar-text-active hover:bg-sidebar-hover'
+                    ? 'bg-sidebar-active text-white font-medium border-l-2 border-white'
+                    : 'text-sidebar-text hover:text-sidebar-text-active hover:bg-sidebar-hover border-l-2 border-transparent'
                 }`
               }
             >

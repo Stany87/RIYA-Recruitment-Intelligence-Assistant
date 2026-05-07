@@ -9,15 +9,20 @@ export default function JobsPage() {
       </div>
 
       <div className="bg-surface border border-border rounded">
-        <div className="px-4 py-3 border-b border-border flex items-center justify-between">
-          <h2 className="text-[13px] font-semibold text-text-primary">Active Roles</h2>
-          <span className="badge badge-neutral">Phase 4</span>
-        </div>
-        <div className="px-4 py-10 text-center">
-          <p className="text-[13px] text-text-muted mb-1">No job descriptions have been created.</p>
-          <p className="text-[12px] text-text-placeholder">
-            Add job descriptions here. RIYA will use them to evaluate incoming candidates.
+        <div className="px-6 py-16 flex flex-col items-center text-center max-w-md mx-auto">
+          <div className="w-20 h-20 rounded-2xl bg-surface-secondary border border-border-light flex items-center justify-center mb-5">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#b0b0b0" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+          </div>
+          <h2 className="text-[15px] font-semibold text-text-primary mb-1.5">No job descriptions yet</h2>
+          <p className="text-[13px] text-text-muted mb-6 leading-relaxed">
+            Create job descriptions for your open roles. RIYA will use these to screen incoming candidates against specific requirements.
           </p>
+          <button className="px-4 py-[8px] rounded bg-accent hover:bg-accent-hover text-white text-[13px] font-medium transition-colors cursor-pointer">
+            Create first job
+          </button>
         </div>
       </div>
     </div>
