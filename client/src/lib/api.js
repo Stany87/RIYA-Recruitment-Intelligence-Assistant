@@ -19,11 +19,29 @@ const api = {
       ...options,
     };
 
-    const response = await fetch(`${API_URL}${endpoint}`, config);
-    const data = await response.json();
+    let response;
+    try {
+      response = await fetch(`${API_URL}${endpoint}`, config);
+    } catch (networkError) {
+      // Network failure — server unreachable, DNS error, CORS, etc.
+      throw new Error('Unable to reach the server. Check your connection and try again.');
+    }
+
+    // Try to parse JSON, but handle non-JSON responses (HTML error pages, etc.)
+    let data;
+    try {
+      data = await response.json();
+    } catch {
+      throw new Error(`Server returned an unexpected response (${response.status}).`);
+    }
 
     if (!response.ok) {
-      throw new Error(data.message || 'Something went wrong');
+      // Auto-logout on 401 (expired/invalid token)
+      if (response.status === 401 && endpoint !== '/auth/login') {
+        localStorage.removeItem('clockwork_token');
+        window.location.href = '/login';
+      }
+      throw new Error(data.message || `Request failed (${response.status}).`);
     }
 
     return data;
