@@ -12,6 +12,7 @@ const candidateRoutes = require('./routes/candidates');
 const dashboardRoutes = require('./routes/dashboard');
 const chatRoutes = require('./routes/chat');
 const agencyRoutes = require('./routes/agency');
+const jobRoutes = require('./routes/jobs');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -48,6 +49,7 @@ app.use('/api/v1/candidates', candidateRoutes);
 app.use('/api/v1/dashboard', dashboardRoutes);
 app.use('/api/v1/chat', chatRoutes);
 app.use('/api/v1/agency', agencyRoutes);
+app.use('/api/v1/jobs', jobRoutes);
 
 // 404 handler
 app.use((req, res) => {

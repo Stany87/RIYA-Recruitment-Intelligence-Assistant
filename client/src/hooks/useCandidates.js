@@ -4,7 +4,7 @@ import api from '../lib/api';
 /**
  * Fetch candidates with pagination, search, and filters.
  */
-export function useCandidates({ page = 1, limit = 25, search, stage, recommendation, sort } = {}) {
+export function useCandidates({ page = 1, limit = 25, search, stage, recommendation, sort, jobId } = {}) {
   const params = new URLSearchParams();
   params.set('page', page);
   params.set('limit', limit);
@@ -12,9 +12,10 @@ export function useCandidates({ page = 1, limit = 25, search, stage, recommendat
   if (stage) params.set('stage', stage);
   if (recommendation && recommendation !== 'all') params.set('recommendation', recommendation);
   if (sort) params.set('sort', sort);
+  if (jobId) params.set('jobId', jobId);
 
   return useQuery({
-    queryKey: ['candidates', { page, limit, search, stage, recommendation, sort }],
+    queryKey: ['candidates', { page, limit, search, stage, recommendation, sort, jobId }],
     queryFn: () => api.get(`/candidates?${params.toString()}`),
     select: (data) => data.data,
   });

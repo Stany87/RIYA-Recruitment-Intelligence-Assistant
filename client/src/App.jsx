@@ -6,6 +6,7 @@ import RegisterPage from './pages/RegisterPage';
 import DashboardPage from './pages/DashboardPage';
 import CandidatesPage from './pages/CandidatesPage';
 import JobsPage from './pages/JobsPage';
+import JobDetailPage from './pages/JobDetailPage';
 import ChatPage from './pages/ChatPage';
 import SettingsPage from './pages/SettingsPage';
 
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/candidates" element={<CandidatesPage />} />
         <Route path="/jobs" element={<JobsPage />} />
+        <Route path="/jobs/:id" element={<JobDetailPage />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/settings" element={<SettingsPage />} />
       </Route>

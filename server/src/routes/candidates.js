@@ -23,6 +23,7 @@ router.get('/', async (req, res, next) => {
       stage,
       recommendation,
       sort = '-createdAt',
+      jobId,
     } = req.query;
 
     const query = { agencyId: req.agencyId };
@@ -33,6 +34,11 @@ router.get('/', async (req, res, next) => {
         { name: { $regex: search, $options: 'i' } },
         { email: { $regex: search, $options: 'i' } },
       ];
+    }
+
+    // Filter by Job ID
+    if (jobId) {
+      query.jobId = jobId;
     }
 
     // Filter by stage (comma-separated for multi-select)

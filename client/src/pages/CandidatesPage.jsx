@@ -1,6 +1,8 @@
 import { useState, useCallback } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Search, LayoutList, Columns3, Upload, Plus } from 'lucide-react';
 import { useCandidates, useSyncCandidates } from '../hooks/useCandidates';
+import { useJob } from '../hooks/useJobs';
 import CandidateTable from '../components/candidates/CandidateTable';
 import CandidateKanban from '../components/candidates/CandidateKanban';
 import CandidateDrawer from '../components/candidates/CandidateDrawer';
@@ -9,6 +11,9 @@ import toast from 'react-hot-toast';
 const REC_FILTERS = ['all', 'SHORTLIST', 'MAYBE', 'REJECT'];
 
 export default function CandidatesPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const jobId = searchParams.get('jobId') || '';
+
   const [view, setView] = useState('table');
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
@@ -17,6 +22,7 @@ export default function CandidatesPage() {
   const [selectedId, setSelectedId] = useState(null);
 
   const syncMutation = useSyncCandidates();
+  const { data: filteredJob } = useJob(jobId);
 
   // Debounced search
   const handleSearch = useCallback((val) => {
@@ -33,6 +39,7 @@ export default function CandidatesPage() {
     limit: view === 'table' ? 25 : 200,
     search: debouncedSearch,
     recommendation,
+    jobId: jobId || undefined,
   });
 
   const candidates = data?.candidates || [];
@@ -118,6 +125,22 @@ export default function CandidatesPage() {
         </div>
       ) : (
         <>
+          {/* Active Job Filter Banner */}
+          {jobId && filteredJob && (
+            <div className="mb-3 px-3 py-2 bg-neutral-100 border border-border rounded flex items-center justify-between text-[11px] text-text-secondary">
+              <span>Filtering candidates by job: <strong className="text-text-primary">{filteredJob.title}</strong></span>
+              <button 
+                onClick={() => {
+                  searchParams.delete('jobId');
+                  setSearchParams(searchParams);
+                }}
+                className="text-accent font-semibold hover:underline cursor-pointer"
+              >
+                Clear filter
+              </button>
+            </div>
+          )}
+
           {/* Filter bar */}
           <div className="bg-surface border border-border rounded mb-3">
             <div className="px-4 py-2.5 flex items-center gap-3 flex-wrap">
