@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useJobs, useUpdateJob, useDeleteJob, useSyncJob } from '../hooks/useJobs';
 import NewJobModal from '../components/jobs/NewJobModal';
-import { Plus, Briefcase, MapPin, DollarSign, Users, Calendar, MoreVertical, CheckCircle2, Pause, Trash2, Sync } from 'lucide-react';
+import { Plus, Briefcase, MapPin, DollarSign, Users, Calendar, MoreVertical, CheckCircle2, Pause, Trash2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
