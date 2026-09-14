@@ -207,8 +207,6 @@ clockwork-ats/
 │   ├── Procfile                   # Heroku deployment config
 │   └── package.json
 │
-├── CLOCKWORK ATS — MASTER AI SOFTWARE PROMPT.md
-├── CLOCKWORK ATS — MASTER AI SOFTWARE PROMPT.pdf
 ├── .gitignore
 └── README.md
 ```
